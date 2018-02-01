@@ -22,13 +22,13 @@ ref_to_artifact(Ref,Art) :-
 %============ARTIFACT=============%
 learn_artifact_belief(Ref,B) :-
     ref_to_artifact(Ref,Art),
-    call_method(Art,'LearnBelief'(B),Ret),
+    call_method(Art,'CheckBelief'(B),Ret),
     Ret \= false,
     add_belief(B).
     
 check_artifact_belief(Ref,B) :-
     ref_to_artifact(Ref,Art),
-    call_method(Art,'LearnBelief'(B),Ret),
+    call_method(Art,'CheckBelief'(B),Ret),
     Ret \= false.
     
 add_artifact_belief(Ref,B) :-

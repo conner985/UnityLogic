@@ -19,13 +19,29 @@ namespace UnityLogic
             myKB.IsTrue(new ISOPrologReader("go_on.").ReadTerm(), this);
         }
 
-        public object Use(object action)
+        public object Use(object name)
+        {
+            LogicVariable plan = new LogicVariable("Plan");
+
+            try
+            {
+                myKB.SolveFor(plan, new Structure("use", name, plan), this);
+            }
+            catch (System.Exception ex)
+            {
+                return false;
+            }
+
+            return plan;
+        }
+
+        public object Activate(object name)
         {
             LogicVariable conditions = new LogicVariable("Conditions");
 
             try
             {
-                myKB.SolveFor(conditions, new Structure("use", action, conditions), this);
+                myKB.SolveFor(conditions, new Structure("activate", name, conditions), this);
             }
             catch (System.Exception ex)
             {
@@ -35,7 +51,7 @@ namespace UnityLogic
             return conditions;
         }
 
-        public bool LearnBelief(ref object belief)
+        public bool CheckBelief(ref object belief)
         {
             return myKB.IsTrue(new Structure("learn_belief", belief), this);            
         }
