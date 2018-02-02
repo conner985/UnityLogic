@@ -53,7 +53,7 @@ namespace UnityLogic
 
         public bool CheckBelief(ref object belief)
         {
-            return myKB.IsTrue(new Structure("learn_belief", belief), this);            
+            return myKB.IsTrue(new Structure("check_belief", belief), this);            
         }
 
         public bool AddBelief(object belief)

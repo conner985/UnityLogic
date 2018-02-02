@@ -54,13 +54,13 @@ use_artifact(Ref,Action,Ret) :-
 %============AGENT================%
 learn_agent_belief(Ref,B) :-
     ref_to_agent(Ref,Ag),
-    call_method(Ag,'LearnBelief'(B),Ret),
+    call_method(Ag,'CheckBelief'(B),Ret),
     Ret \= false,
     add_belief(B).
     
 check_agent_belief(Ref,B) :-
     ref_to_agent(Ref,Ag),
-    call_method(Ag,'LearnBelief'(B),Ret),
+    call_method(Ag,'CheckBelief'(B),Ret),
     Ret \= false.
     
 add_agent_desire(Ref,D) :-

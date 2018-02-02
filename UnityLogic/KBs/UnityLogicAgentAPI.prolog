@@ -33,6 +33,9 @@ stop :-
     assert(/active_task/plans:null).
 
 %==================BELIEF==================%
+check_belief(B) :-
+    belief B.
+
 add_belief(B) :-
     assert(belief B).
  
@@ -40,6 +43,9 @@ del_belief(B) :-
     retract(belief B).
     
 %==================DESIRE=================%
+check_desire(D) :-
+    desire D.
+
 add_desire(D) :-
     desire D 
     ; 

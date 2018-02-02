@@ -13,16 +13,10 @@ go_on :-
     Cont \= null,
     task_completed.
     
-go_on :-
-    /active_task/plans:Plans,
-    Plans = [H|T],
-    assert(/active_task/plans:T),
-    set_active_task(H).
-    
-stop :-
-    assert(/active_task/plans:null).
-    
 %=============BELIEF==============================%
+check_belief(B) :-
+    belief B.
+
 add_belief(B) :- 
     belief B 
     ; 

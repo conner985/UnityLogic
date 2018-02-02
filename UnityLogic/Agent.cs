@@ -36,6 +36,11 @@ namespace UnityLogic
 
         #region BELIEFS
 
+        public bool CheckBelief(ref object belief)
+        {
+            return myKB.IsTrue(new Structure("check_belief", belief), this);            
+        }
+        
         public bool AddBelief(object belief)
         {
             return myKB.IsTrue(new ISOPrologReader("add_belief(" + belief + ").").ReadTerm(), this);
@@ -50,6 +55,11 @@ namespace UnityLogic
 
         #region DESIRES
 
+        public bool CheckDesire(ref object desire)
+        {
+            return myKB.IsTrue(new Structure("check_desire", desire), this);            
+        }
+        
         public bool AddDesire(object desire)
         {
             return myKB.IsTrue(new ISOPrologReader("add_desire(" + desire + ").").ReadTerm(), this);
