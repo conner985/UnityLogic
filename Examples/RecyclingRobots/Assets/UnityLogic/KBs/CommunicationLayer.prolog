@@ -41,14 +41,14 @@ del_artifact_belief(Ref,B) :-
     call_method(Art,'DelBelief'(B),Ret),
     Ret \= false.
     
-activate_artifact(Ref,Action) :-
+activate_artifact(Ref,PlanName) :-
     ref_to_artifact(Ref,Art),
-    call_method(Art,'Activate'(Action),Ret),
+    call_method(Art,'Activate'(PlanName),Ret),
     Ret.
     
-use_artifact(Ref,Action,Ret) :-
+use_artifact(Ref,PlanName,Ret) :-
     ref_to_artifact(Ref,Art),
-    call_method(Art,'Use'(Action),Ret),
+    call_method(Art,'Use'(PlanName),Ret),
     Ret \= false.
     
 %============AGENT================%
@@ -63,16 +63,6 @@ check_agent_belief(Ref,B) :-
     call_method(Ag,'CheckBelief'(B),Ret),
     Ret \= false.
     
-add_agent_desire(Ref,D) :-
-    ref_to_agent(Ref,Ag),
-    call_method(Ag,'AddDesire'(D),Ret),
-    Ret \= false.
-    
-del_agent_desire(Ref,D) :-
-    ref_to_agent(Ref,Ag),
-    call_method(Ag,'DelDesire'(D),Ret),
-    Ret \= false.
-    
 add_agent_belief(Ref,B) :-
     ref_to_agent(Ref,Ag),
     call_method(Ag,'AddBelief'(B),Ret),
@@ -81,6 +71,27 @@ add_agent_belief(Ref,B) :-
 del_agent_belief(Ref,B) :-
     ref_to_agent(Ref,Ag),
     call_method(Ag,'DelBelief'(B),Ret),
+    Ret \= false.
+
+learn_agent_desire(Ref,D) :-
+    ref_to_agent(Ref,Ag),
+    call_method(Ag,'CheckDesire'(D),Ret),
+    Ret \= false,
+    add_desire(D).
+    
+check_agent_desire(Ref,D) :-
+    ref_to_agent(Ref,Ag),
+    call_method(Ag,'CheckDesire'(D),Ret),
+    Ret \= false.
+    
+add_agent_desire(Ref,D) :-
+    ref_to_agent(Ref,Ag),
+    call_method(Ag,'AddDesire'(D),Ret),
+    Ret \= false.
+    
+del_agent_desire(Ref,D) :-
+    ref_to_agent(Ref,Ag),
+    call_method(Ag,'DelDesire'(D),Ret),
     Ret \= false.
     
 learn_agent_plan(Ref,Head,Raw) :-
