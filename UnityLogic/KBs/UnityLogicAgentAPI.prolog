@@ -62,6 +62,6 @@ del_desire(D) :-
     ).
     
 %==================PLAN==================%
-check_plan(Event,Full) :-
-    Event && C => A,
-    Full = Event && C => A.
+check_plan(Head,Full) :-
+    Head && C => A,
+    Full = Head && C => A.
