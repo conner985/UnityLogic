@@ -7,9 +7,9 @@ namespace UnityLogic
     {
         public static IEnumerator WaitForSeconds(float sec)
         {
-            float start = Time.time;
+            float start = Time.timeSinceLevelLoad;
 
-            while (Time.time - start < sec)
+            while (Time.timeSinceLevelLoad - start < sec)
             {
                 yield return null;
             }

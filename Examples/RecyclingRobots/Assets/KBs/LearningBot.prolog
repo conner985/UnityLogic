@@ -18,6 +18,7 @@ add recycle && (\+ belief hand(_)) => [
     add_belief(hand(G)),
     check_artifact_belief(G,type(Type)),
     check_plan(add recycle(Type),_),
+    cr writeonballoon("I know how to recycle this!"),
     add_desire(recycle(Type)),
     stop
 ].
@@ -33,13 +34,16 @@ add recycle && (belief hand(G)) => [
     act (findPlasticBot,Bot),
     act stopbot(Bot),
     cr goto(Bot),
+    cr writeonballoon("Hey yellow, do you know how to recycle this?"),
     act resumebot(Bot),
     learn_agent_plan(Bot,add recycle(Type),true),
+    cr writeonballoon("Thanks a lot! now I know, too!"),
     add_desire(recycle(Type)),
     stop
 ].
 
 add recycle && (belief hand(G)) => [
+    cr writeonballoon("Blue, would you handle this?"),
     act (findPaperBot,Bot),
     add_agent_desire(Bot,recycle(G))
 ].

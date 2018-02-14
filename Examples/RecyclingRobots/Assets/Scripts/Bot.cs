@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 
 public class Bot : Agent
 {
@@ -10,10 +11,19 @@ public class Bot : Agent
     public string kbPath = "KBs/PrologFile";
     public string kbName = "KbName";
 
+    public TextMeshProUGUI balloonText;
+    public RectTransform canvas;
+
     void Start()
     {
         Init(kbPath, kbPath);
         nav = GetComponent<NavMeshAgent>();
+
+    }
+
+    bool CheckPlan(string type)
+    {
+        return true;
     }
 
     public object SearchGarbage()
@@ -126,5 +136,24 @@ public class Bot : Agent
 
         b.nav.enabled = true;
         b.nav.isStopped = false;
+    }
+
+    public IEnumerator WriteOnBalloon(string text)
+    {
+        canvas.gameObject.SetActive(true);
+        //float yRot = 42f - transform.rotation.y;
+        //canvas.localRotation = new Quaternion(0, yRot, 0, 0);
+        canvas.LookAt(transform.position - Camera.main.transform.position);
+        balloonText.text = text;
+
+        float start = Time.timeSinceLevelLoad;
+
+        while (Time.timeSinceLevelLoad - start < 2f)
+        {
+            yield return null;
+        }
+
+        balloonText.text = "";
+        canvas.gameObject.SetActive(false);
     }
 }
