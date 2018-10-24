@@ -3,7 +3,7 @@ BDI Agents and Artifacts in Unity
 
 Development framework based on Prolog with interoperability with Unity to write complex behaviours in a declarative way - i.e. do_this, than_this, finally_this
 
-A guide will soon be available.
+You can read more about this project in my master thesis at: http://amslaurea.unibo.it/15657/1/poli_nicola_tesi.pdf
 
 A video of the example developed using this architecture is available at:  https://www.youtube.com/watch?v=BMHiZImVC3A
 
